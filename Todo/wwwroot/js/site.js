@@ -1,4 +1,9 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿/* TodoList/Detail.cshtml */
+$('#hide-items-toggle').click(function () {
+    if ($(this).prop("checked") === true) {
+        $(".is-done").addClass("todo-item-complete");
+    }
+    else{
+        $(".is-done").removeClass("todo-item-complete");
+    }
+});
