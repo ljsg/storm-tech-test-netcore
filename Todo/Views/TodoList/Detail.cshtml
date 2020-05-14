@@ -33,7 +33,7 @@
                     break;
             }
             string classComplete = @item.IsDone ? "is-done" : "is-not-done";
-            <li class="list-group-item @contextualClass @classComplete">
+            <li class="list-group-item ranked-item @contextualClass @classComplete" data-sort="@item.Rank">
                 <div class="row">
                     <div class="col-md-8">
                         <a asp-action="Edit" asp-controller="TodoItem" asp-route-todoItemId="@item.TodoItemId">
@@ -63,6 +63,10 @@
     <div>
         <label>Hide items marked as done</label>
         <input id="hide-items-toggle" type="checkbox">
+    </div>
+    <div>
+        <label>Sort by rank</label>
+        <button id="sort-button" class="btn btn-primary">Sort</button>
     </div>
 
 </div>
