@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -25,9 +27,12 @@ namespace Todo.Controllers
 
         public IActionResult Index()
         {
-            var userId = User.Id();
-            var todoLists = dbContext.RelevantTodoLists(userId);
-            var viewmodel = TodoListIndexViewmodelFactory.Create(todoLists);
+            string userId = User.Id();
+            var todoListsOwnedByUser = dbContext.OwnedTodoList(userId).ToList();
+            var todoListsReferencingUser = dbContext.AssignedItemsTodoList(userId).ToList();
+            IEnumerable<TodoList> combinedList = todoListsOwnedByUser.Concat(todoListsReferencingUser);
+            
+            var viewmodel = TodoListIndexViewmodelFactory.Create(combinedList);
             return View(viewmodel);
         }
 
