@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Todo.Data.Entities;
 
@@ -32,6 +29,7 @@ namespace Todo.Data
                 entity.HasOne(d => d.TodoList)
                     .WithMany(p => p.Items)
                     .HasForeignKey(d => d.TodoListId);
+                entity.Property(e => e.Rank).HasDefaultValue(1).HasMaxLength(100);
             });
         }
     }

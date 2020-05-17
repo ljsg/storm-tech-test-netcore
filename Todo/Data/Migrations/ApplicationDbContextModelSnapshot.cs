@@ -14,7 +14,7 @@ namespace Todo.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024");
+                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -185,6 +185,11 @@ namespace Todo.Data.Migrations
                     b.Property<int>("Importance");
 
                     b.Property<bool>("IsDone");
+
+                    b.Property<int>("Rank")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100)
+                        .HasDefaultValue(1);
 
                     b.Property<string>("ResponsiblePartyId");
 

@@ -35,3 +35,10 @@ body {
         display: none;
     }
 }
+
+
+/* Custom Site CSS */
+/* TodoList/Detail.cshtml */
+.todo-item-complete {
+    display: none;
+}

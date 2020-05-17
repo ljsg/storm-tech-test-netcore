@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Todo.Data.Entities {
     public class TodoItem
@@ -9,6 +10,8 @@ namespace Todo.Data.Entities {
         public IdentityUser ResponsibleParty { get; set; }
         public bool IsDone { get; set; }
         public Importance Importance { get; set; }
+        [Range(1, 100)]
+        public int Rank { get; set; }
 
         public int TodoListId { get; set; }
         public TodoList TodoList { get; set; }

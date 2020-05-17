@@ -16,8 +16,7 @@ namespace Todo.Tests
         {
             var todoList = new TestTodoListBuilder(new IdentityUser("alice@example.com"), "shopping")
                     .WithItem("bread", Importance.High)
-                    .Build()
-                ;
+                    .Build();
 
             srcTodoItem = todoList.Items.First();
 

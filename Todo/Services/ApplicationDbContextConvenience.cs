@@ -7,11 +7,18 @@ namespace Todo.Services
 {
     public static class ApplicationDbContextConvenience
     {
-        public static IQueryable<TodoList> RelevantTodoLists(this ApplicationDbContext dbContext, string userId)
+        public static IQueryable<TodoList> OwnedTodoList(this ApplicationDbContext dbContext, string userId)
         {
             return dbContext.TodoLists.Include(tl => tl.Owner)
                 .Include(tl => tl.Items)
                 .Where(tl => tl.Owner.Id == userId);
+        }
+
+        public static IQueryable<TodoList> AssignedItemsTodoList(this ApplicationDbContext dbContext, string userId)
+        {
+            return dbContext.TodoLists.Include(tl => tl.Owner)
+                .Include(tl => tl.Items)
+                .Where(tl => tl.Owner.Id != userId && tl.Items.Any(items => items.ResponsiblePartyId == userId));
         }
 
         public static TodoList SingleTodoList(this ApplicationDbContext dbContext, int todoListId)
